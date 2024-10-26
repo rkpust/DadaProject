@@ -1,41 +1,55 @@
-{% comment %} <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block title %}
-    {% endblock %}
-    <!--cdn link for bootstrap and fontawesome-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-</head>
-<body class="bg-light">
-    <div class="container">
-        <h1>form</h1>
-    </div>
-
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> 
-</body>
-</html> {% endcomment %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+    <title>DADA(DHAKA) LTD</title>
+    {% endblock %}
+    <!--cdn link for bootstrap and fontawesome-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+    <!-- Buttons extension CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.4/css/buttons.dataTables.min.css">
+
+    
+
+    <link rel="icon" href="{% static 'logo.png'%}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'logo.png'%}" type="image/x-icon">
     <title>Cap Order Form</title>
 </head>
 <body>
-    <center>
-        <h1>Cap Order Form</h1>
-        <form method="post" action="{% url 'submit-form' %}" class="bg-secondary">
-            {% csrf_token %}
-            {{ form.as_p }}  <!-- Renders the form fields as paragraphs -->
-            <button type="submit">Submit Order</button>
-        </form>
-    </center>
+    <div class="container">
+        <h1 class="mt-2 text-center"><img src="{% static 'logo.png'%}" /> DADA(DHAKA) LTD ~ Cap Order Form</h1>
+        <a type="button" href="{% url 'dashboard' %}" class="btn btn-outline-primary" style="float:right; display:inline; margin-top:30px; margin-bottom:10px;">Dashboard</a>
+        <center>
+            {% comment %} <form method="post" action="{% url 'submit-form' %}" class="bg-secondary">
+                {% csrf_token %}
+                {{ form.as_p }}  <!-- Renders the form fields as paragraphs -->
+                <button type="submit">Submit Order</button>
+            </form> {% endcomment %}
+
+            <form method="POST" class="pt-2 pb-3"  style="margin-top:100px;">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        <table style="background:gray;">
+                            <tr>
+                                <td style="width:200px; color:white;"><label for="{{ field.id_for_label }}" class="mr-3 form-label">{{ field.label }}</label></td>
+                                <td style="width:150px;">{{ field }}</td>
+                            </tr>
+                        </table>
+                        
+                        
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-outline-primary">Submit</button>
+            </form>
+        </center>
+    </div>
 </body>
 </html>

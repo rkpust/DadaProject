@@ -10,8 +10,13 @@
     <!--cdn link for bootstrap and fontawesome-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+    <!-- Buttons extension CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.4/css/buttons.dataTables.min.css">
+
     
+
     <link rel="icon" href="{% static 'logo.png'%}" type="image/x-icon">
     <link rel="shortcut icon" href="{% static 'logo.png'%}" type="image/x-icon">
 
@@ -19,8 +24,8 @@
 <body class="bg-light">
     <div class="container">
         <h1 class="mt-2 text-center"><img src="{% static 'logo.png'%}" /> DADA(DHAKA) LTD ~ Dashboard</h1>
-        <a type="button" href="{% url 'submit-form' %}" class="btn btn-primary" style="display:inline; margin-top:50px;">Add</a>
-        <div style="float:right; margin-top:50px;">
+        <a type="button" href="{% url 'submit-form' %}" class="btn btn-outline-primary" style="float:right; display:inline; margin-top:40px; margin-bottom:20px;">Add Order</a>
+        {% comment %} <div style="float:right; margin-top:50px;">
             <form action="" method="post" autocomplete="off">
                 {% csrf_token %}
                 <div class="input-group" style="width:300px">
@@ -34,11 +39,11 @@
                     </div>
                 </div>
             </form>
-        </div>
+        </div> {% endcomment %}
         
         <table class="mt-3 table table-hover" id="myTable">
             <thead>
-              <tr>
+              <tr class="bg-info">
                 <th scope="col">PS</th>
                 <th scope="col">PS Date</th>
                 <th scope="col">Style</th>
@@ -79,12 +84,30 @@
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
-<script>
-    $(document).ready( function () {
-        $('#myTable').DataTable();
-    } );
-</script>
+
+
+ <!-- jQuery -->
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <!-- DataTables JS -->
+ <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+ <!-- Buttons extension JS -->
+ <script src="https://cdn.datatables.net/buttons/2.3.4/js/dataTables.buttons.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+ <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js"></script>
+ <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script>
+
+ <script>
+     $(document).ready(function() {
+         $('#myTable').DataTable({
+             dom: 'Bfrtip', // This is where you specify the placement of the Buttons
+             buttons: [
+                 'copy', 'csv', 'excel', 'pdf', 'print'
+             ]
+         });
+     });
+ </script>
 
 </body>
 </html>

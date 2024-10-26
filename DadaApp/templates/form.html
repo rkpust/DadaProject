@@ -29,11 +29,13 @@
     <title>Cap Order Form</title>
 </head>
 <body>
-    <h1>Cap Order Form</h1>
-    <form method="post" action="{% url 'submit-form' %}">
-        {% csrf_token %}
-        {{ form.as_p }}  <!-- Renders the form fields as paragraphs -->
-        <button type="submit">Submit Order</button>
-    </form>
+    <center>
+        <h1>Cap Order Form</h1>
+        <form method="post" action="{% url 'submit-form' %}" class="bg-secondary">
+            {% csrf_token %}
+            {{ form.as_p }}  <!-- Renders the form fields as paragraphs -->
+            <button type="submit">Submit Order</button>
+        </form>
+    </center>
 </body>
 </html>

@@ -3,10 +3,11 @@ from django.db import models
 # Create your models here.
 
 class CapOrder(models.Model):
-    ps_number = models.CharField(max_length=20, unique=True, blank=True, null=True)
+    PS = models.CharField(max_length=20, unique=True)
     ps_date = models.DateField(blank=True, null=True)
+    SST10 = models.CharField(blank=True, null=True)
     style = models.CharField(max_length=20, blank=True, null=True)
-    byr_po_number = models.CharField(max_length=20, blank=True, null=True)
+    byr_po = models.CharField(max_length=20, blank=True, null=True)
     quantity = models.IntegerField(blank=True, null=True)
     byr = models.CharField(max_length=50, blank=True, null=True)
     ship_date = models.DateField(blank=True, null=True)
@@ -38,5 +39,10 @@ class CapOrder(models.Model):
         ordering = ['ps_date']
 
     def __str__(self):
-        return f"{self.ps_number} - {self.style} - {self.quantity} PCS"
+        return f"{self.PS} - {self.style} - {self.quantity} PCS"
 
+
+
+class CapOrderImage(models.Model):
+    cap_order = models.ForeignKey(CapOrder, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='cap_order_images/')  # Specify the upload directory

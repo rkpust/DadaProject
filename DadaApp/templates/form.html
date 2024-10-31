@@ -29,24 +29,24 @@
         <center>
             {% comment %} <form method="post" action="{% url 'submit-form' %}" class="bg-secondary">
                 {% csrf_token %}
-                {{ form.as_p }}  <!-- Renders the form fields as paragraphs -->
+                {{ form.as_p }}
                 <button type="submit">Submit Order</button>
             </form> {% endcomment %}
 
-            <form method="POST" class="pt-2 pb-3"  style="margin-top:100px;">
+            <form method="POST" class="pt-2 pb-3"  style="margin-top:100px;" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for field in form %}
                     <div class="form-group">
                         <table style="background:gray;">
-                            <tr>
-                                <td style="width:200px; color:white;"><label for="{{ field.id_for_label }}" class="mr-3 form-label">{{ field.label }}</label></td>
+                            <tr style="width:350px;">
+                                <td style="padding-left:5px; width:200px; color:white;"><label for="{{ field.id_for_label }}" class="mr-3 form-label">{{ field.label }} :</label></td>
                                 <td style="width:150px;">{{ field }}</td>
                             </tr>
-                        </table>
-                        
-                        
+                        </table> 
                     </div>
                 {% endfor %}
+                <!-- <td style="padding-left:5px; width:200px; color:white;"><label for="id_image" class="mr-3 form-label">Image :</label></td>
+                <input type="file" name="image" style="width: 200px;" accept="image/*" id="id_image"> -->
                 <button type="submit" class="btn btn-outline-primary">Submit</button>
             </form>
         </center>

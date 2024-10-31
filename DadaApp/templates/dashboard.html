@@ -46,22 +46,26 @@
               <tr class="bg-info">
                 <th scope="col">PS</th>
                 <th scope="col">PS Date</th>
+                <th scope="col">SST10</th>
                 <th scope="col">Style</th>
                 <th scope="col">BYR PO</th>
                 <th scope="col">QTY</th>
                 <th scope="col">BYR</th>
+                <th scope="col">Item</th>
               </tr>
             </thead>
             <tbody>
                 {% if results%}
                 {% for result in results %}
                 <tr>
-                    <td>{{result.ps_number}}</td>
+                    <td>{{result.PS}}</td>
                     <td>{{result.ps_date}}</td>
+                    <td>{{result.SST10}}</td>
                     <td>{{result.style}}</td>
                     <td>{{result.byr_po_number}}</td>
                     <td>{{result.quantity}}</td>
                     <td>{{result.byr}}</td>
+                    <td>{{result.cap_item}}</td>
                 </tr>
                 {% endfor %}
                 {% endif %}

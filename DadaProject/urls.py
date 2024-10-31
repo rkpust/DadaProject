@@ -21,3 +21,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('DadaApp.urls')),
 ]
+
+
+
+admin.site.site_header = "DADA(DHAKA) LTD"
+admin.site.index_title = "DADA(DHAKA) LTD"
+admin.site.site_title = "DADA(DHAKA) LTD Administration"
